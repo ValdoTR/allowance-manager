@@ -10,5 +10,7 @@ export type PageProps<
 > = T & {
     auth: {
         user: User;
+        isWalletConnected: boolean;
+        ownerAddress: `0x${string}`;
     };
 };

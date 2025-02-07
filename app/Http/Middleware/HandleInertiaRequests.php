@@ -33,6 +33,8 @@ class HandleInertiaRequests extends Middleware
             ...parent::share($request),
             'auth' => [
                 'user' => $request->user(),
+                'isWalletConnected' => session('isWalletConnected', false),
+                'ownerAddress' => session('ownerAddress', null), 
             ],
         ];
     }
