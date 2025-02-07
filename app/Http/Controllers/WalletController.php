@@ -10,8 +10,6 @@ class WalletController extends Controller
 {
     public function connectWallet(Request $request): RedirectResponse
     {
-        session(['isWalletConnected' => true]);
-
         $ownerAddress = $request->input('owner_address');
         session(['ownerAddress' => $ownerAddress]);
 
@@ -21,7 +19,6 @@ class WalletController extends Controller
 
     public function disconnectWallet(): RedirectResponse
     {
-        session(['isWalletConnected' => false]);
         session(['ownerAddress' => null]);
 
         // Redirect users to the welcome page after disconnecting a wallet

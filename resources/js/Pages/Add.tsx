@@ -1,6 +1,6 @@
-import { Head, useForm } from '@inertiajs/react';
+import { Head, usePage, useForm } from '@inertiajs/react';
 import Layout from '@/Layouts/Layout';
-import { useAccount, useWriteContract } from 'wagmi';
+import { useWriteContract } from 'wagmi';
 import { erc20Abi, parseUnits } from "viem";
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
@@ -10,12 +10,12 @@ import { FormEventHandler } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 
 export default function Add() {
-    const { address } = useAccount();
+    const { auth } = usePage().props
     const { writeContractAsync, isPending } = useWriteContract();
             
     const { data, setData, post, processing, errors } = useForm({
         contract_address: "", // 0xdbc1856cbD9553B8F2BE31f6E6d5695dC823B47C
-        owner_address: address,
+        owner_address: auth.ownerAddress!,
         spender_address: "", //0xeE9c2c936CB4a88aeB302204f368228EDDD1b5fA / 0xED9f8147C854c06CC853663Eb4f64197De8ECB10
         amount: "0", // 1000000 is 1 USDT
     });
@@ -23,7 +23,7 @@ export default function Add() {
     const handleSubmit: FormEventHandler = async (e) => {
         e.preventDefault();
 
-        if (!address) {
+        if (!auth.ownerAddress) {
             toast.warn("🤨 Please connect your wallet first!");
             return;
         }

@@ -9,8 +9,6 @@ export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>,
 > = T & {
     auth: {
-        user: User;
-        isWalletConnected: boolean;
-        ownerAddress: `0x${string}`;
+        ownerAddress: `0x${string}` | null;
     };
 };

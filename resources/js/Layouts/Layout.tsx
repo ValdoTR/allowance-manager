@@ -4,7 +4,6 @@ import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link, usePage, router } from '@inertiajs/react';
 import { PropsWithChildren, ReactNode, useState } from 'react';
-
 import { useAccount, useConnect, useDisconnect } from 'wagmi';
 import { injected } from 'wagmi/connectors';
 import { sepolia } from 'viem/chains';
@@ -14,7 +13,6 @@ export default function Layout({
     children,
 }: PropsWithChildren<{ header?: ReactNode }>) {
     const { auth } = usePage().props
-
     const { address } = useAccount();
     const { connectAsync } = useConnect();
     const { disconnectAsync } = useDisconnect();
@@ -24,7 +22,7 @@ export default function Layout({
         shortenAddress = `${address.slice(0, 5)}...${address.slice(-5)}`
     }
 
-    // These methods update the shared data 'auth.isWalletConnected' and 'auth.ownerAddress'
+    // These methods update the shared data 'auth.ownerAddress'
     const connectWallet = (ownerAddress: `0x${string}`) => {
         router.post('/connect-wallet', { owner_address: ownerAddress });
     };
@@ -47,7 +45,7 @@ export default function Layout({
                                 </Link>
                             </div>
 
-                            { auth.isWalletConnected ? (
+                            { auth.ownerAddress ? (
                                 <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                     <NavLink
                                         href={route('allowances.index')}
@@ -71,7 +69,7 @@ export default function Layout({
 
                         <div className="hidden sm:ms-6 sm:flex sm:items-center">
                             <div className="relative ms-3">
-                                { auth.isWalletConnected ? (
+                                { auth.ownerAddress ? (
                                     <Dropdown>
                                         <Dropdown.Trigger>
                                             <span className="inline-flex rounded-md">
@@ -193,7 +191,7 @@ export default function Layout({
                         ' sm:hidden'
                     }
                 >
-                    { auth.isWalletConnected ? (
+                    { auth.ownerAddress ? (
                         <div className="space-y-1 pb-3 pt-2">
                             <ResponsiveNavLink
                                 href={route('allowances.index')}
@@ -213,7 +211,7 @@ export default function Layout({
                         </>
                     )}
 
-                    { auth.isWalletConnected ? (
+                    { auth.ownerAddress ? (
                         <div className="border-t border-gray-200 pb-1 pt-4">
                             <div className="px-4">
                                 <div className="text-base font-medium text-gray-800">

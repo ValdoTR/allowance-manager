@@ -32,8 +32,6 @@ class HandleInertiaRequests extends Middleware
         return [
             ...parent::share($request),
             'auth' => [
-                'user' => $request->user(),
-                'isWalletConnected' => session('isWalletConnected', false),
                 'ownerAddress' => session('ownerAddress', null), 
             ],
         ];

@@ -1,7 +1,7 @@
 import { PageProps } from '@/types';
 import { useState } from "react";
-import { router, Link, Head } from '@inertiajs/react';
-import { useAccount, useWriteContract } from 'wagmi';
+import { router, usePage, Link, Head } from '@inertiajs/react';
+import { useWriteContract } from 'wagmi';
 import { erc20Abi, parseUnits } from "viem";
 import Layout from '@/Layouts/Layout';
 import SecondaryButton from '@/Components/SecondaryButton';
@@ -17,7 +17,7 @@ type Allowance = {
 }
 
 export default function Overview({ allowances = [] }: PageProps<{ allowances?: Allowance[] }>) {
-    const { address } = useAccount();
+    const { auth } = usePage().props
     const { writeContractAsync, isPending } = useWriteContract();
     const txnBaseURL = 'https://sepolia.etherscan.io/tx';
     
@@ -50,7 +50,7 @@ export default function Overview({ allowances = [] }: PageProps<{ allowances?: A
         owner_address: string,
         spender_address: string
     ) => {
-        if (!address || address !== owner_address) {
+        if (!auth.ownerAddress || auth.ownerAddress !== owner_address) {
             toast.warn("🤨 You can't edit this allowance.");
             return;
         }
@@ -79,7 +79,7 @@ export default function Overview({ allowances = [] }: PageProps<{ allowances?: A
         owner_address: string,
         spender_address: string
     ) => {
-        if (!address || address !== owner_address) {
+        if (!auth.ownerAddress || auth.ownerAddress !== owner_address) {
             toast.warn("🤨 You can't edit this allowance.");
             return;
         }
