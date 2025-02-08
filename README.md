@@ -1,16 +1,15 @@
 # 🚀 Wallow: Your Ethereum Allowance Manager 🦄
 
+![App logo](./public/wallow-x64.png)
+
 Easily track and manage ERC-20 allowances for smart contract wallets.
 
 ## 🎯 Features
 
-✅ View all ERC-20 allowances added within the app 📊
-
-✅ Approve new allowances for dApps 💸
-
-✅ Revoke or update existing allowances 🚫
-
-✅ Secure & user-friendly interface 🔐
+- View all ERC-20 allowances added within the app 📊
+- Approve new allowances for dApps 💸
+- Revoke or update existing allowances 🚫
+- ecure & user-friendly interface 🔐
 
 ## ⚡ Installation
 
