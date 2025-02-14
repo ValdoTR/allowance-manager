@@ -14,9 +14,9 @@ export default function Add() {
     const { writeContractAsync, isPending } = useWriteContract();
             
     const { data, setData, post, processing, errors } = useForm({
-        contract_address: "", // 0xdbc1856cbD9553B8F2BE31f6E6d5695dC823B47C
+        contract_address: "",
         owner_address: auth.ownerAddress!,
-        spender_address: "", //0xeE9c2c936CB4a88aeB302204f368228EDDD1b5fA / 0xED9f8147C854c06CC853663Eb4f64197De8ECB10
+        spender_address: "",
         amount: "0", // 1000000 is 1 USDT
     });
 

@@ -30,4 +30,6 @@ npm run dev
 php artisan serve
 ```
 
-Then visit: http://127.0.0.1:8000 🌍
+Then visit [localhost](http://127.0.0.1:8000) page 🌍
+
+Also, you may want to run PHPStan: `composer phpstan` for code analysis.
